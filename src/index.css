@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-surface: #131315;
+  --color-surface-dim: #131315;
+  --color-surface-bright: #39393b;
+  --color-surface-container-lowest: #0e0e10;
+  --color-surface-container-low: #1b1b1d;
+  --color-surface-container: #1f1f21;
+  --color-surface-container-high: #2a2a2c;
+  --color-surface-container-highest: #353437;
+  --color-on-surface: #e4e2e4;
+  --color-on-surface-variant: #c1c6d7;
+  --color-inverse-surface: #e4e2e4;
+  --color-inverse-on-surface: #303032;
+  --color-outline: #8b90a0;
+  --color-outline-variant: #414755;
+  --color-surface-tint: #adc6ff;
+  --color-primary: #adc6ff;
+  --color-on-primary: #002e69;
+  --color-primary-container: #4b8eff;
+  --color-on-primary-container: #00285c;
+  --color-inverse-primary: #005bc1;
+  --color-secondary: #c2c1ff;
+  --color-on-secondary: #1800a7;
+  --color-secondary-container: #3630bf;
+  --color-on-secondary-container: #b1b1ff;
+  --color-tertiary: #68d3ff;
+  --color-on-tertiary: #003546;
+  --color-tertiary-container: #139cc7;
+  --color-on-tertiary-container: #002e3d;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+  --color-primary-fixed: #d8e2ff;
+  --color-primary-fixed-dim: #adc6ff;
+  --color-on-primary-fixed: #001a41;
+  --color-on-primary-fixed-variant: #004493;
+  --color-secondary-fixed: #e2dfff;
+  --color-secondary-fixed-dim: #c2c1ff;
+  --color-on-secondary-fixed: #0c006b;
+  --color-on-secondary-fixed-variant: #332dbc;
+  --color-tertiary-fixed: #bee9ff;
+  --color-tertiary-fixed-dim: #68d3ff;
+  --color-on-tertiary-fixed: #001f2a;
+  --color-on-tertiary-fixed-variant: #004d64;
+  --color-background: #131315;
+  --color-on-background: #e4e2e4;
+  --color-surface-variant: #353437;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-background font-sans;
+  }
+}
+
+.glass-panel {
+  background: rgba(31, 31, 33, 0.4);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.polished-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.mesh-bg {
+  background-color: #0e0e10;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(0, 40, 92, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(54, 48, 191, 0.4) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(13, 156, 199, 0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(105, 0, 5, 0.2) 0px, transparent 50%);
+}
+
+.glow-line-primary {
+  filter: drop-shadow(0 0 8px rgba(173, 198, 255, 0.4));
+}
+
+.glow-line-tertiary {
+  filter: drop-shadow(0 0 8px rgba(104, 211, 255, 0.4));
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Model Viewer Hotspots */
+.hotspot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(173, 198, 255, 0.2);
+  box-shadow: 0 0 5px rgba(173, 198, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.4;
+}
+
+.hotspot:hover {
+  opacity: 1;
+  scale: 1.4;
+  background: #adc6ff;
+  border: 1px solid #fff;
+  box-shadow: 0 0 15px rgba(173, 198, 255, 0.8);
+}
+
+.annotation {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  background: rgba(19, 19, 21, 0.9);
+  color: #adc6ff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  border: 1px solid rgba(173, 198, 255, 0.2);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.hotspot:hover .annotation {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Utility classes */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
